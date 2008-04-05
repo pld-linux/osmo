@@ -1,14 +1,17 @@
 Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
-Version:	0.1.1
+Version:	0.2.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://clay.ll.pl/osmo/%{name}-%{version}.tar.gz
-# Source0-md5:	0593e4798fc58aa0c54c1cd17c1a64be
+Source0:	http://dl.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
+# Source0-md5:	6960aae8b95eb09bf8d0bf4f8656a080
 URL:		http://clay.ll.pl/osmo/
-BuildRequires:	gtk+2-devel >= 2:2.8.0
+BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	libgringotts-devel >= 1.2.1
+BuildRequires:	libical-devel >= 0.27
+BuildRequires:	libnotify-devel >= 0.4.4
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -58,3 +61,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/osmo
 %{_pixmapsdir}/osmo.png
 %{_pixmapsdir}/osmo.svg
+%{_desktopdir}/*.desktop
