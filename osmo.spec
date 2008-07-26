@@ -6,7 +6,7 @@ Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
 Version:	0.2.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
@@ -56,6 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# fix locale name: zh -> zh_CN
+mv $RPM_BUILD_ROOT%{_datadir}/locale/{zh,zh_CN}
 
 %find_lang %{name}
 
