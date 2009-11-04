@@ -5,15 +5,15 @@
 Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
-Version:	0.2.2
-Release:	2
+Version:	0.2.8
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
-# Source0-md5:	d790c2040fda541765a7db2a6827673c
-URL:		http://clay.ll.pl/osmo/
+Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
+# Source0-md5:	7fa83efd27cd3ecc54e73f0ec4e91d81
+URL:		http://clayo.org/osmo/
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	libgringotts-devel >= 1.2.1
 BuildRequires:	libical-devel >= 0.27
 BuildRequires:	libnotify-devel >= 0.4.4
@@ -57,9 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# fix locale name: zh -> zh_CN
-mv $RPM_BUILD_ROOT%{_datadir}/locale/{zh,zh_CN}
-
 %find_lang %{name}
 
 %clean
@@ -70,6 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TRANSLATORS
 %attr(755,root,root) %{_bindir}/osmo
 %{_pixmapsdir}/osmo.png
-%{_pixmapsdir}/osmo.svg
 %{_desktopdir}/osmo.desktop
+%{_iconsdir}/hicolor/*/apps/osmo.*
 %{_mandir}/man1/osmo.1*
