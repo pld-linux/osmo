@@ -1,6 +1,4 @@
 #
-# TODO: /usr/share/sounds/osmo/alarm.wav -> /usr/share/osmo/sounds/alram.wav
-#
 # Conditional builds:
 %bcond_with	libsyncml	# enable experimental SyncML plugin
 #
@@ -13,7 +11,10 @@ License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
 # Source0-md5:	a774db748228efee96186158d553ade9
+Patch0:		%{name}-datadir.patch
 URL:		http://clayo.org/osmo/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	libgringotts-devel >= 1.2.1
@@ -47,8 +48,13 @@ przechowywania danych bazę danych w czystym XML-u.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--with%{!?with_libsyncml:out}-libsyncml
 %{__make}
@@ -68,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TRANSLATORS
 %attr(755,root,root) %{_bindir}/osmo
+%{_datadir}/%{name}
 %{_pixmapsdir}/osmo.png
 %{_desktopdir}/osmo.desktop
 %{_iconsdir}/hicolor/*/apps/osmo.*
