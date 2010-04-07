@@ -1,0 +1,19 @@
+--- osmo-0.2.10/data/sounds/Makefile.am~	2010-03-31 23:47:35.000000000 +0200
++++ osmo-0.2.10/data/sounds/Makefile.am	2010-04-07 15:09:54.210260533 +0200
+@@ -1,5 +1,5 @@
+ 
+-soundsdir = $(datadir)/sounds/osmo
++soundsdir = $(datadir)/osmo/sounds
+ sounds_DATA = alarm.wav
+ 
+ EXTRA_DIST = $(sounds_DATA) 
+--- osmo-0.2.10/src/Makefile.am~	2010-03-31 23:47:34.000000000 +0200
++++ osmo-0.2.10/src/Makefile.am	2010-04-07 15:11:56.310262574 +0200
+@@ -1,6 +1,6 @@
+ REVISION := $(shell if test -e .svn; then echo -DREV=\"`LC_ALL=C svn info | sed -n '/^Rev/p'| sed -e 's/^Revision:\ //'`\"; fi;)
+ AM_CPPFLAGS = -DLOCALEDIR=\"$(datadir)/locale\" $(REVISION) -DDATADIR=\"$(datadir)\" \
+-			  -DSOUNDSDIR=\"$(datadir)/sounds\" \
++			  -DSOUNDSDIR=\"$(datadir)/osmo/sounds\" \
+ 			  @GTK_CFLAGS@ @XML_CPPFLAGS@ -Wall
+ 			  dnl -DGDK_PIXBUF_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DG_DISABLE_CAST_CHECKS
+ 
