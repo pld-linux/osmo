@@ -1,16 +1,18 @@
 #
+# TODO: /usr/share/sounds/osmo/alarm.wav -> /usr/share/osmo/sounds/alram.wav
+#
 # Conditional builds:
 %bcond_with	libsyncml	# enable experimental SyncML plugin
 #
 Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
-Version:	0.2.8
+Version:	0.2.10
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
-# Source0-md5:	7fa83efd27cd3ecc54e73f0ec4e91d81
+# Source0-md5:	a774db748228efee96186158d553ade9
 URL:		http://clayo.org/osmo/
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.12.0
