@@ -1,0 +1,60 @@
+--- osmo-0.2.10/src/check_events.c.libnotify	2011-04-13 20:45:53.205331690 +0200
++++ osmo-0.2.10/src/check_events.c	2011-04-13 21:12:39.586781174 +0200
+@@ -453,11 +453,17 @@ gboolean sound_flag = TRUE;
+ 					a->time = -1;
+ 					a->date = 0;
+ 
++#if NOTIFY_CHECK_VERSION(0, 7, 0)
+ 					if (textdesc != NULL)
++						a->notify = notify_notification_new (item->summary, textdesc, GTK_STOCK_DIALOG_WARNING);
++					else
++						a->notify = notify_notification_new (item->summary, text, GTK_STOCK_DIALOG_WARNING);
++#else
++					if (textdesc != NULL)					
+ 						a->notify = notify_notification_new (item->summary, textdesc, GTK_STOCK_DIALOG_WARNING, NULL);
+ 					else
+ 						a->notify = notify_notification_new (item->summary, text, GTK_STOCK_DIALOG_WARNING, NULL);
+-
++#endif
+ 					g_free (textdesc);
+ 					g_free (text);
+ 
+@@ -484,7 +490,9 @@ gboolean sound_flag = TRUE;
+ 
+ 					if (gtk_status_icon_get_visible (appGUI->osmo_trayicon)) {
+ #ifdef HAVE_LIBNOTIFY
++#if !NOTIFY_CHECK_VERSION(0, 7, 0)
+ 						notify_notification_attach_to_status_icon (a->notify, appGUI->osmo_trayicon);
++#endif
+ #endif /* HAVE_LIBNOTIFY */
+ 				        gtk_status_icon_set_from_stock (appGUI->osmo_trayicon, OSMO_STOCK_SYSTRAY_TASK);
+ 
+@@ -531,11 +539,17 @@ gboolean sound_flag = TRUE;
+ 					a->type = NOTIFY_WARNING;
+ 					a->time = -1;
+ 					a->date = 0;
++#if NOTIFY_CHECK_VERSION(0, 7, 0)
++					if (textdesc != NULL)
++						a->notify = notify_notification_new (_("Alarm warning!"), textdesc, GTK_STOCK_DIALOG_INFO);
++					else
++						a->notify = notify_notification_new (_("Alarm warning!"), text, GTK_STOCK_DIALOG_INFO);
++#else
+ 					if (textdesc != NULL)
+ 						a->notify = notify_notification_new (_("Alarm warning!"), textdesc, GTK_STOCK_DIALOG_INFO, NULL);
+ 					else
+ 						a->notify = notify_notification_new (_("Alarm warning!"), text, GTK_STOCK_DIALOG_INFO, NULL);
+-
++#endif
+ 					notify_notification_set_timeout (a->notify, NOTIFY_EXPIRES_NEVER);
+ 					notify_notification_set_urgency (a->notify, NOTIFY_URGENCY_NORMAL);
+ 					if (tsk_get_category_state (item->category, STATE_TASKS, appGUI) == TRUE)
+@@ -546,7 +560,9 @@ gboolean sound_flag = TRUE;
+ 
+ 					if (gtk_status_icon_get_visible (appGUI->osmo_trayicon)) {
+ #ifdef HAVE_LIBNOTIFY
++#if !NOTIFY_CHECK_VERSION(0, 7, 0)
+ 						notify_notification_attach_to_status_icon (a->notify, appGUI->osmo_trayicon);
++#endif
+ #endif /* HAVE_LIBNOTIFY */
+ 				        gtk_status_icon_set_from_stock (appGUI->osmo_trayicon, OSMO_STOCK_SYSTRAY_TASK);
+ 
