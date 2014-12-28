@@ -16,7 +16,7 @@ Patch1:		%{name}-libnotify.patch
 URL:		http://clayo.org/osmo/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	libgringotts-devel >= 1.2.1
 BuildRequires:	libical-devel >= 0.27
