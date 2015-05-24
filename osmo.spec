@@ -6,13 +6,14 @@ Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
 Version:	0.2.10
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
 # Source0-md5:	a774db748228efee96186158d553ade9
 Patch0:		%{name}-datadir.patch
 Patch1:		%{name}-libnotify.patch
+Patch2:		ac.patch
 URL:		http://clayo.org/osmo/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,6 +52,7 @@ przechowywania danych bazę danych w czystym XML-u.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__aclocal}
