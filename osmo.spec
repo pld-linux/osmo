@@ -6,7 +6,7 @@ Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
 Version:	0.2.10
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
