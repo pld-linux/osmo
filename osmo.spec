@@ -24,6 +24,8 @@ BuildRequires:	libical-devel >= 0.27
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	pkgconfig
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%update_icon_cache hicolor
 %banner %{name} -e << EOF
 
 Since version 0.4.0 Osmo uses XDG Base Directory Specification
@@ -91,6 +94,9 @@ export XDG_CONFIG_HOME="path/to/osmo/config"
 export XDG_DATA_HOME="path/to/osmo/data"
 
 EOF
+
+%postun
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
