@@ -1,31 +1,35 @@
-#
-# Conditional builds:
-#
 Summary:	Simple PIM application
 Summary(pl.UTF-8):	Prosta aplikacja PIM (do zarządzania informacjami osobistymi)
 Name:		osmo
 Version:	0.4.4
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/osmo-pim/%{name}-%{version}.tar.gz
 # Source0-md5:	4a22d229c57c12899520edecd73e6bb9
 Patch0:		%{name}-datadir.patch
 URL:		http://clayo.org/osmo/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	gettext-tools
+BuildRequires:	glib2-devel >= 1:2.6.0
 BuildRequires:	gspell-devel >= 1.2.0
 BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	gtk-webkit4-devel >= 2.8.0
 BuildRequires:	libarchive-devel >= 3.0.0
 BuildRequires:	libgringotts-devel >= 1.2.1
-BuildRequires:	libical-devel >= 0.27
+BuildRequires:	libical-devel >= 1.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-devel >= 2.0
+BuildRequires:	pango-devel >= 1:1.20
 BuildRequires:	pkgconfig
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
+Requires:	glib2-devel >= 1:2.6.0
+Requires:	gspell >= 1.2.0
+Requires:	gtk+3 >= 3.10.0
+Requires:	gtk-webkit4 >= 2.8.0
+Requires:	pango >= 1:1.20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# unsupported locale
+# duplicates of gl,ur
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{gl_ES,ur_PK}
 
 %find_lang %{name}
